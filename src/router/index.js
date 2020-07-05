@@ -13,11 +13,66 @@ const routes = [
   {
     path: "/about",
     name: "About",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     component: function() {
       return import(/* webpackChunkName: "about" */ "../views/About.vue");
+    }
+  },
+  {
+    path: "/work",
+    name: "Work",
+    component: function() {
+      return import(/* webpackChunkName: "about" */ "../views/Work.vue");
+    }
+  },
+  {
+    path: "/work/discover-bp",
+    name: "DiscoverBp",
+    component: function() {
+      return import(/* webpackChunkName: "about" */ "../views/DiscoverBp.vue");
+    }
+  },
+  {
+    path: "/work/trp-metrics",
+    name: "TrpMetrics",
+    component: function() {
+      return import(/* webpackChunkName: "about" */ "../views/TrpMetrics.vue");
+    }
+  },
+  {
+    path: "/work/ey",
+    name: "Ey",
+    component: function() {
+      return import(/* webpackChunkName: "about" */ "../views/Ey.vue");
+    }
+  },
+  {
+    path: "/work/placeholder",
+    name: "Placeholder",
+    component: function() {
+      return import(/* webpackChunkName: "about" */ "../views/Placeholder.vue");
+    }
+  },
+  {
+    path: "/work/gighub",
+    name: "GigHub",
+    component: function() {
+      return import(/* webpackChunkName: "about" */ "../views/GigHub.vue");
+    }
+  },
+  {
+    path: "/work/photography-ldn",
+    name: "PhotographyLdn",
+    component: function() {
+      return import(
+        /* webpackChunkName: "about" */ "../views/PhotographyLdn.vue"
+      );
+    }
+  },
+  {
+    path: "/work/squares",
+    name: "Squares",
+    component: function() {
+      return import(/* webpackChunkName: "about" */ "../views/Squares.vue");
     }
   }
 ];

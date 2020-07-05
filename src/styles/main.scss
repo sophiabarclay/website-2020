@@ -1,0 +1,30 @@
+.main {
+  margin: 50px;
+  margin-bottom: 0;
+  @media only screen and (max-width: 900px) {
+    margin: 30px;
+  }
+}
+
+.wavy-link {
+  color: #000;
+  text-decoration: underline;
+  text-decoration-style: wavy;
+  text-decoration-color: #00ff9f;
+  text-underline-position: under;
+  &:hover {
+    color: #999999;
+  }
+}
+
+h4 {
+  margin-top: 0;
+  font-size: 20px;
+  line-height: 1.5em;
+}
+
+.link {
+  &:hover {
+    color: #999999;
+  }
+}
