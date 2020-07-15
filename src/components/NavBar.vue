@@ -1,5 +1,5 @@
 <template>
-  <nav class="nav">
+  <nav class="nav fade-in">
     <div class="burger">
       <div @click="toggleburger">
         <p v-if="!burgerOpen">Menu</p>
@@ -9,7 +9,7 @@
         <li
           v-for="(link, idx) in navLinks"
           :key="idx"
-          class="active"
+          class="active stagger-in"
           @click="toggleburger"
         >
           <router-link
@@ -26,7 +26,7 @@
             >{{ link.name }}</a
           >
         </li>
-        <li class="burger-social">
+        <li class="burger-social stagger-in">
           <a
             href="https://github.com/sophiabarclay"
             target="_blank"
@@ -53,7 +53,7 @@
         <li
           v-for="(link, idx) in navLinks"
           :key="idx"
-          class="active"
+          class="active stagger-in"
           @click="toggleMenu"
         >
           <router-link
@@ -179,29 +179,17 @@ export default {
     margin: 0;
     padding-left: 0;
     position: absolute;
-
-    li {
-      list-style: none;
-      animation-name: animateIn;
-      animation-duration: 350ms;
-      animation-delay: calc(var(--animation-order) * 100ms);
-      animation-fill-mode: both;
-      animation-timing-function: ease-in-out;
-    }
-    @keyframes animateIn {
-      0% {
-        opacity: 0;
-        transform: scale(0.6) translateY(-8px);
-      }
-
-      100% {
-        opacity: 1;
-      }
-    }
   }
   .title-large {
     font-size: 72px;
+    line-height: 1em;
     transition: font-size ease-in-out 0.1s;
+    @media only screen and (max-width: 575px) {
+      font-size: 60px;
+    }
+    @media only screen and (max-width: 500px) {
+      font-size: 48px;
+    }
   }
 
   .title-small {

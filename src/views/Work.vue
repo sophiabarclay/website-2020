@@ -1,39 +1,62 @@
 <template>
   <div class="main">
-    <div class="filters">
-      <h3
+    <div class="controls">
+      <div
+        class="control stagger-in slow"
         :class="{ unselected: selected !== 'all' }"
+        data-filter="all"
         @click="setSelected('all')"
       >
-        ALL
-      </h3>
-      <h3>/</h3>
-      <h3
-        :class="{ unselected: selected === 'GA' }"
-        @click="setSelected('Tui')"
+        <h3>All</h3>
+      </div>
+      <div class="stagger-in slow"><h3>/</h3></div>
+      <div
+        class="control stagger-in slow"
+        :class="{
+          unselected: selected === 'nineteen' || selected === 'eighteen'
+        }"
+        data-filter=".twenty"
+        @click="setSelected('twenty')"
       >
-        TUI
-      </h3>
-      <h3>/</h3>
-      <h3
-        :class="{ unselected: selected === 'Tui' }"
-        @click="setSelected('GA')"
+        <h3>2020</h3>
+      </div>
+      <div class="stagger-in slow"><h3>/</h3></div>
+      <div
+        class="control stagger-in slow"
+        :class="{
+          unselected: selected === 'twenty' || selected === 'eighteen'
+        }"
+        data-filter=".nineteen"
+        @click="setSelected('nineteen')"
       >
-        GENERAL ASSEMBLY
-      </h3>
+        <h3>2019</h3>
+      </div>
+      <div class="stagger-in slow"><h3>/</h3></div>
+      <div
+        class="control stagger-in slow"
+        :class="{
+          unselected: selected === 'nineteen' || selected === 'twenty'
+        }"
+        data-filter=".eighteen"
+        @click="setSelected('eighteen')"
+      >
+        <h3>2018</h3>
+      </div>
     </div>
     <div
-      class="projects"
+      class="container"
       :class="{ 'projects-odd': selectedProjects.length % 2 }"
     >
       <router-link
-        v-for="(project, idx) in selectedProjects"
+        v-for="(project, idx) in projects"
         :key="idx"
         :to="`/work/${project.path}`"
+        class="project mix"
+        :class="getFilterClass(project)"
       >
-        <div class="project">
+        <div>
           <img
-            :src="require(`@/assets/images/work/${project.image}`)"
+            :src="require(`@/assets/images/work/${project.overviewImage}`)"
             :alt="project.title"
             width="600px"
           />
@@ -48,26 +71,39 @@
 </template>
 
 <script>
+import mixitup from "mixitup";
 import Work from "@/mixins/Work";
 
 export default {
-  name: "Work",
+  name: "app",
   mixins: [Work],
   data() {
     return {
+      containerEl: "",
+      mixer: "",
       selected: "all"
     };
+  },
+  mounted() {
+    this.containerEl = document.querySelector(".container");
+    this.mixer = mixitup(this.containerEl);
   },
   computed: {
     selectedProjects() {
       if (this.selected === "all") return this.projects;
       let projects = [...this.projects];
-      return projects.filter(project => project.company === this.selected);
+      return projects.filter(project => project.year.includes(this.selected));
     }
   },
   methods: {
     setSelected(filter) {
       this.selected = filter;
+    },
+    getFilterClass(project) {
+      if (project.year === "2020") return "twenty";
+      if (project.year === "2019-2020") return "nineteen twenty";
+      else if (project.year === "2019") return "nineteen";
+      else if (project.year === "2018") return "eighteen";
     }
   }
 };
@@ -77,7 +113,35 @@ export default {
 @import "~@/styles/fonts.scss";
 @import "~@/styles/main.scss";
 
-.projects {
+/* Controls
+---------------------------------------------------------------------- */
+.controls {
+  margin-bottom: 24px;
+  display: flex;
+  justify-content: center;
+  h3 {
+    padding: 0 4px;
+  }
+
+  .unselected {
+    h3 {
+      color: #999999;
+    }
+  }
+}
+.control {
+  h3 {
+    padding: 0 4px;
+  }
+}
+
+.container {
+  padding: 1rem;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  justify-content: space-between;
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
@@ -85,6 +149,7 @@ export default {
   .project {
     position: relative;
     margin-bottom: 32px;
+    text-decoration: none;
 
     &:hover {
       img {
@@ -128,6 +193,9 @@ export default {
       }
       @media only screen and (max-width: 900px) {
         width: 600px;
+      }
+      @media only screen and (max-width: 700px) {
+        width: 100%;
       }
     }
 
@@ -189,17 +257,6 @@ export default {
   }
 }
 
-.filters {
-  margin-bottom: 24px;
-  display: flex;
-  justify-content: center;
-
-  h3 {
-    padding: 0 4px;
-  }
-
-  .unselected {
-    opacity: 0.5;
-  }
-}
+// .filters {
+// }
 </style>

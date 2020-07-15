@@ -1,12 +1,17 @@
 @font-face {
   font-family: "BebasNeue";
-  src: url('~@/assets/fonts/BebasNeue-Regular.otf');
+  src: url('~@/assets/fonts/BebasNeue-Regular.woff2') format('woff2'), url('~@/assets/fonts/BebasNeue-Regular.woff') format('woff');
+  
 }
 @font-face {
   font-family: "FuturaItalic";
-  src: url('~@/assets/fonts/Futura-Book-Italic.otf');
+  src: url('~@/assets/fonts/FuturaBookItalicfont.woff2') format('woff2'), url('~@/assets/fonts/FuturaBookItalicfont.woff') format('woff');
 }
 @font-face {
   font-family: "Futura";
-  src: url('~@/assets/fonts/Futura-Book.otf');
+  src: url('~@/assets/fonts/FuturaBookfont.woff2') format('woff2'), url('~@/assets/fonts/FuturaBookfont.woff') format('woff');
+}
+@font-face {
+  font-family: "FuturaItalicLight";
+  src: url('~@/assets/fonts/FuturaLightItalicfont.woff2') format('woff2'), url('~@/assets/fonts/FuturaLightItalicfont.woff') format('woff');
 }

@@ -46,6 +46,15 @@ const routes = [
     }
   },
   {
+    path: "/work/project-dastaan",
+    name: "ProjectDastaan",
+    component: function() {
+      return import(
+        /* webpackChunkName: "about" */ "../views/ProjectDastaan.vue"
+      );
+    }
+  },
+  {
     path: "/work/placeholder",
     name: "Placeholder",
     component: function() {
@@ -79,6 +88,9 @@ const routes = [
 
 const router = new VueRouter({
   mode: "history",
+  scrollBehavior() {
+    return { x: 0, y: 0 };
+  },
   base: process.env.BASE_URL,
   routes
 });

@@ -1,11 +1,26 @@
 <template>
   <div>
-    <h1>Ey</h1>
+    <project-container :project="project" :type="project.company" />
   </div>
 </template>
 
 <script>
+import Work from "@/mixins/Work";
+import ProjectContainer from "@/components/ProjectContainer.vue";
+
 export default {
-  name: "Ey"
+  name: "Ey",
+  components: {
+    ProjectContainer
+  },
+  mixins: [Work],
+  data() {
+    return {
+      project: {}
+    };
+  },
+  mounted() {
+    this.project = this.getProject("EY")[0];
+  }
 };
 </script>

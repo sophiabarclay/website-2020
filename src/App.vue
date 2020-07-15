@@ -5,7 +5,7 @@
     <img
       v-if="$route.path === '/about'"
       height="400px"
-      src="@/assets/images/sophia.jpg"
+      src="@/assets/images/sophia.png"
       alt="Sophia Barclay"
       class="profile-image"
     />
